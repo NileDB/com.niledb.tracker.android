@@ -39,7 +39,7 @@
         android:title="@string/pref_title_min_distance" />
 
     <ListPreference
-        android:defaultValue="1"
+        android:defaultValue="60000"
         android:entries="@array/pref_min_periodicity_titles"
         android:entryValues="@array/pref_min_periodicity_values"
         android:key="min_periodicity"

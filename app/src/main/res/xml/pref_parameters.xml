@@ -1,0 +1,51 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="CarrierAgentLocation"
+        android:capitalize="none"
+        android:inputType="text"
+        android:key="entity_name"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_entity_name" />
+
+    <EditTextPreference
+        android:defaultValue="carrierAgent"
+        android:capitalize="none"
+        android:inputType="text"
+        android:key="agent_id_attribute_name"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_agent_id_attribute_name" />
+
+    <EditTextPreference
+        android:defaultValue="location"
+        android:capitalize="none"
+        android:inputType="text"
+        android:key="location_attribute_name"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_location_attribute_name" />
+
+    <EditTextPreference
+        android:capitalize="none"
+        android:inputType="text"
+        android:key="altitude_attribute_name"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_altitude_attribute_name" />
+
+    <EditTextPreference
+        android:capitalize="none"
+        android:inputType="text"
+        android:key="accuracy_attribute_name"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_accuracy_attribute_name" />
+
+</PreferenceScreen>

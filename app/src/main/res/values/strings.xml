@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">NileDB Tracker</string>
+
+    <!-- Strings related to Settings -->
+    <string name="pref_header_service">Configuración del servicio</string>
+
+    <string name="pref_title_service_enabled">Servicio de seguimiento activado</string>
+    <string name="pref_description_service_enabled">Habilita el envio de información de seguimiento.</string>
+    <string name="pref_title_agent_id">Identificador de agente</string>
+    <string name="pref_title_authentication_required">Autenticación de usuario requerida</string>
+    <string name="pref_title_username">Nombre de usuario</string>
+    <string name="pref_title_password">Contraseña</string>
+
+    <string name="pref_title_admin_password">Contraseña de administración</string>
+
+    <string name="pref_header_communications">Configuración de comunicaciones</string>
+
+    <string name="pref_title_protocol">Protocolo para el envío de datos</string>
+    <string-array name="pref_protocol_list_titles">
+        <item>GraphQL</item>
+        <item>MQTT</item>
+    </string-array>
+    <string-array name="pref_protocol_list_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string name="pref_title_graphql_endpoint">URL del servicio GraphQL</string>
+    <string name="pref_title_mqtt_endpoint">URL del servicio MQTT</string>
+
+    <string name="pref_title_min_distance">Distancia mínima entre envíos de datos</string>
+    <string-array name="pref_min_distance_titles">
+        <item>500 metros</item>
+        <item>1 km</item>
+        <item>5 km</item>
+        <item>10 km</item>
+        <item>50 km</item>
+    </string-array>
+    <string-array name="pref_min_distance_values">
+        <item>500</item>
+        <item>1000</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>50000</item>
+    </string-array>
+
+    <string name="pref_title_min_periodicity">Tiempo mínimo entre envíos de datos</string>
+    <string-array name="pref_min_periodicity_titles">
+        <item>1 minuto</item>
+        <item>5 minutos</item>
+        <item>15 minutos</item>
+        <item>30 minutos</item>
+        <item>1 hora</item>
+        <item>3 horas</item>
+        <item>6 horas</item>
+    </string-array>
+    <string-array name="pref_min_periodicity_values">
+        <item>1</item>
+        <item>5</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+    </string-array>
+
+    <string name="pref_header_parameters">Configuración de parámetros</string>
+
+    <string name="pref_title_entity_name">Nombre de la entidad de registro</string>
+    <string name="pref_title_location_attribute_name">Nombre del parámetro "Location"</string>
+    <string name="pref_title_altitude_attribute_name">Nombre del parámetro "Altitud"</string>
+    <string name="pref_title_accuracy_attribute_name">Nombre del parámetro "Precisión"</string>
+    <string name="pref_title_agent_id_attribute_name">Nombre del parámetro "Identificador de agente"</string>
+
+</resources>

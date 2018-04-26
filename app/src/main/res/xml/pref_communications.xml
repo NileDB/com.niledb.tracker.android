@@ -1,0 +1,50 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_protocol_list_titles"
+        android:entryValues="@array/pref_protocol_list_values"
+        android:key="protocol"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_protocol" />
+
+    <EditTextPreference
+        android:defaultValue="https://niledb.com/graphql"
+        android:capitalize="none"
+        android:inputType="text"
+        android:key="graphql_endpoint"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_graphql_endpoint" />
+
+    <EditTextPreference
+        android:defaultValue="tcp://niledb.com:1883"
+        android:capitalize="none"
+        android:inputType="text"
+        android:key="mqtt_endpoint"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_mqtt_endpoint" />
+
+    <ListPreference
+        android:defaultValue="500"
+        android:entries="@array/pref_min_distance_titles"
+        android:entryValues="@array/pref_min_distance_values"
+        android:key="min_distance"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_min_distance" />
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/pref_min_periodicity_titles"
+        android:entryValues="@array/pref_min_periodicity_values"
+        android:key="min_periodicity"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_min_periodicity" />
+
+</PreferenceScreen>

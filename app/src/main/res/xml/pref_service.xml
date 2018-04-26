@@ -1,0 +1,53 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="service_enabled"
+        android:summary="@string/pref_description_service_enabled"
+        android:title="@string/pref_title_service_enabled" />
+
+    <EditTextPreference
+        android:defaultValue="1"
+        android:capitalize="none"
+        android:inputType="number"
+        android:key="agent_id"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_agent_id" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="authentication_required"
+        android:title="@string/pref_title_authentication_required" />
+
+    <EditTextPreference
+        android:capitalize="none"
+        android:inputType="text"
+        android:dependency="authentication_required"
+        android:key="username"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_username" />
+
+    <EditTextPreference
+        android:capitalize="none"
+        android:inputType="textPassword"
+        android:dependency="authentication_required"
+        android:key="password"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_password" />
+
+    <EditTextPreference
+        android:capitalize="none"
+        android:inputType="textPassword"
+        android:key="admin_password"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_admin_password" />
+
+</PreferenceScreen>

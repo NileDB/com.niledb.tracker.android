@@ -46,9 +46,8 @@ public class LocationChangeReceiver extends BroadcastReceiver {
                 String accuracyParameterName = PreferenceManager.getDefaultSharedPreferences(context).getString("accuracy_attribute_name", null);
 
                 Log.i("NileDB", new Date() + "," + serviceEnabled + ", " + agentId + ", " + authenticationRequired + ", " + username + ", " + password + ", " + adminPassword + ", " + protocol + ", " + graphqlEndpoint + ", " + mqttEndpoint + ", " + minDistance + ", " + minPeriodicity + ", " + entityName + ", " + agentIdParameterName + ", " + locationParameterName + ", " + altitudeParameterName + ", " + accuracyParameterName);
-
                 ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
-                toneGenerator.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
+                toneGenerator.startTone(ToneGenerator.TONE_CDMA_PIP, 1000);
 
             }
         }

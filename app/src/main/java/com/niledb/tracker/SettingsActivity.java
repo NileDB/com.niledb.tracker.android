@@ -95,6 +95,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         boolean serviceEnabled = PreferenceManager.getDefaultSharedPreferences(applicationContext).getBoolean("service_enabled", false);
 
+        /*
         if (serviceEnabled) {
             if (ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 int minDistance = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(applicationContext).getString("min_distance", "500"));
@@ -106,12 +107,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         else {
             locationManager.removeUpdates(launchIntent);
         }
+        */
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupActionBar();
+
+        startService(new Intent(this, LauncherService.class));
 
         if (applicationContext == null) {
             applicationContext = getApplicationContext();

@@ -1,6 +1,5 @@
 package com.niledb.tracker;
 
-import android.Manifest;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,7 +9,6 @@ import android.location.LocationManager;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
@@ -26,8 +24,17 @@ public class BootCompletedReceiver extends BroadcastReceiver {
             launchIntent = PendingIntent.getBroadcast(context, 0, new Intent("com.niledb.tracker.SEND_LOCATION_ACTION"), 0);
         }
 
-        ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
-        toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_REORDER, 150);
+        boolean debugBeep = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("debug_beep", false);
+
+        if (debugBeep) {
+            ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
+            if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_REORDER, 150);
+            }
+            else {
+                toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_INTERCEPT, 150);
+            }
+        }
 
         boolean serviceEnabled = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("service_enabled", false);
 
@@ -35,10 +42,8 @@ public class BootCompletedReceiver extends BroadcastReceiver {
             if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 int minDistance = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context).getString("min_distance", "500"));
                 int minPeriodicity = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context).getString("min_periodicity", "60000"));
+                locationManager.removeUpdates(launchIntent);
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minPeriodicity, minDistance, launchIntent);
-            }
-            else {
-                toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 150);
             }
         }
         else {

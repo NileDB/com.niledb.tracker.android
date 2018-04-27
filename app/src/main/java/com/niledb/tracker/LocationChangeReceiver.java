@@ -83,12 +83,12 @@ public class LocationChangeReceiver extends BroadcastReceiver {
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, graphqlEndpoint, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.i("bufff", response);
+                        Log.i("NileDB", "Response: " + response);
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.i("lkjlkj", error.toString());
+                        Log.i("NileDB", "Error: " + error.toString());
                     }
                 }) {
                     @Override
@@ -98,6 +98,9 @@ public class LocationChangeReceiver extends BroadcastReceiver {
                         return json.getBytes();
                     }
                 };
+
+                // When device goes into "Doze mode", there is no connectivity and Timeout errors may occur. But in this case, it does not mind because the device is stationary
+                // and the position does not change.
                 queue.add(stringRequest);
             }
         }

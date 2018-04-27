@@ -30,10 +30,10 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
         if (debugBeep) {
             if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_INTERCEPT, 150);
+                toneGenerator.startTone(ToneGenerator.TONE_CDMA_PIP, 100);
             }
             else {
-                toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 150);
+                toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_REORDER, 150);
             }
         }
 

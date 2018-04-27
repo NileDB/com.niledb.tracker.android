@@ -15,6 +15,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
     static LocationManager locationManager = null;
     static PendingIntent launchIntent = null;
+    static ToneGenerator toneGenerator = null;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -22,17 +23,17 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         if (locationManager == null) {
             locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
             launchIntent = PendingIntent.getBroadcast(context, 0, new Intent("com.niledb.tracker.SEND_LOCATION_ACTION"), 0);
+            toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
         }
 
         boolean debugBeep = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("debug_beep", false);
 
         if (debugBeep) {
-            ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
             if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_REORDER, 150);
+                toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_INTERCEPT, 150);
             }
             else {
-                toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_INTERCEPT, 150);
+                toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 150);
             }
         }
 

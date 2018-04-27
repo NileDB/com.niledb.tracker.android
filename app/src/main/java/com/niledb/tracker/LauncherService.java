@@ -21,14 +21,13 @@ public class LauncherService extends Service {
     static PendingIntent launchIntent = null;
 
     public LauncherService() {
-
-
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
 
+        /*
         Context applicationContext = getApplicationContext();
 
         if (locationManager == null) {
@@ -56,7 +55,7 @@ public class LauncherService extends Service {
             locationManager.removeUpdates(launchIntent);
         }
 
-
+        */
 
     }
 

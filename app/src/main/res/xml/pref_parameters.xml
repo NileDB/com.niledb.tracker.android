@@ -48,4 +48,16 @@
         android:singleLine="true"
         android:title="@string/pref_title_accuracy_attribute_name" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="debug_beep"
+        android:summary="@string/pref_description_debug_beep"
+        android:title="@string/pref_title_debug_beep" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="debug_vibrate"
+        android:summary="@string/pref_description_debug_vibrate"
+        android:title="@string/pref_title_debug_vibrate" />
+
 </PreferenceScreen>

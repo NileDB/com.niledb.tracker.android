@@ -30,6 +30,7 @@
 
     <string name="pref_title_min_distance">Distancia mínima entre envíos de datos</string>
     <string-array name="pref_min_distance_titles">
+        <item>Aunque no cambie de posición</item>
         <item>500 metros</item>
         <item>1 km</item>
         <item>5 km</item>
@@ -37,6 +38,7 @@
         <item>50 km</item>
     </string-array>
     <string-array name="pref_min_distance_values">
+        <item>0</item>
         <item>500</item>
         <item>1000</item>
         <item>5000</item>
@@ -46,6 +48,7 @@
 
     <string name="pref_title_min_periodicity">Tiempo mínimo entre envíos de datos</string>
     <string-array name="pref_min_periodicity_titles">
+        <item>10 segundos</item>
         <item>1 minuto</item>
         <item>5 minutos</item>
         <item>15 minutos</item>
@@ -55,6 +58,7 @@
         <item>6 horas</item>
     </string-array>
     <string-array name="pref_min_periodicity_values">
+        <item>10000</item>
         <item>60000</item>
         <item>300000</item>
         <item>900000</item>
@@ -71,5 +75,9 @@
     <string name="pref_title_altitude_attribute_name">Nombre del parámetro "Altitud"</string>
     <string name="pref_title_accuracy_attribute_name">Nombre del parámetro "Precisión"</string>
     <string name="pref_title_agent_id_attribute_name">Nombre del parámetro "Identificador de agente"</string>
+    <string name="pref_title_debug_beep">Activar depuración (sonido)</string>
+    <string name="pref_description_debug_beep">Emitir sonido al enviar la posición</string>
+    <string name="pref_title_debug_vibrate">Activar depuración (vibración)</string>
+    <string name="pref_description_debug_vibrate">Vibrar al enviar la posición</string>
 
 </resources>

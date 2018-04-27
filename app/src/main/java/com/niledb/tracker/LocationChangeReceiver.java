@@ -7,6 +7,9 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -44,11 +47,26 @@ public class LocationChangeReceiver extends BroadcastReceiver {
                 String locationParameterName = PreferenceManager.getDefaultSharedPreferences(context).getString("location_attribute_name", "location");
                 String altitudeParameterName = PreferenceManager.getDefaultSharedPreferences(context).getString("altitude_attribute_name", null);
                 String accuracyParameterName = PreferenceManager.getDefaultSharedPreferences(context).getString("accuracy_attribute_name", null);
+                boolean debugBeep = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("debug_beep", false);
+                boolean debugVibrate = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("debug_vibrate", false);
 
                 Log.i("NileDB", new Date() + "," + serviceEnabled + ", " + agentId + ", " + authenticationRequired + ", " + username + ", " + password + ", " + adminPassword + ", " + protocol + ", " + graphqlEndpoint + ", " + mqttEndpoint + ", " + minDistance + ", " + minPeriodicity + ", " + entityName + ", " + agentIdParameterName + ", " + locationParameterName + ", " + altitudeParameterName + ", " + accuracyParameterName);
-                ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
-                toneGenerator.startTone(ToneGenerator.TONE_CDMA_PIP, 1000);
 
+                if (debugBeep) {
+                    ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
+                    toneGenerator.startTone(ToneGenerator.TONE_CDMA_PIP, 1000);
+                }
+
+                if (debugVibrate) {
+                    Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+                    if (vibrator != null) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                        } else {
+                            vibrator.vibrate(500);
+                        }
+                    }
+                }
             }
         }
     }

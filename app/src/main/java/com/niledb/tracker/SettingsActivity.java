@@ -2,25 +2,20 @@ package com.niledb.tracker;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -28,11 +23,7 @@ import java.util.List;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
-    static LocationManager locationManager = null;
-    static PendingIntent launchIntent = null;
-
     static Context applicationContext = null;
-    static Activity activity = null;
 
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
@@ -82,57 +73,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 0) {
-            enableOrDisableService();
-        }
-    }
-
-    static void enableOrDisableService() {
-        if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, 0 );
-        }
-
-        boolean serviceEnabled = PreferenceManager.getDefaultSharedPreferences(applicationContext).getBoolean("service_enabled", false);
-
-        /*
-        if (serviceEnabled) {
-            if (ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                int minDistance = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(applicationContext).getString("min_distance", "500"));
-                int minPeriodicity = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(applicationContext).getString("min_periodicity", "60000"));
-                //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minPeriodicity, minDistance, launchIntent);
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 10, launchIntent);
-            }
-        }
-        else {
-            locationManager.removeUpdates(launchIntent);
-        }
-        */
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupActionBar();
-
-        startService(new Intent(this, LauncherService.class));
 
         if (applicationContext == null) {
             applicationContext = getApplicationContext();
         }
 
-        if (activity == null) {
-            activity = this;
+        if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, 0 );
         }
-
-        if (locationManager == null) {
-            locationManager = (LocationManager) applicationContext.getSystemService(Context.LOCATION_SERVICE);
-        }
-        if (launchIntent == null) {
-            Intent intent = new Intent("NILEDB_TRACKER_SEND_LOCATION_ACTION");
-            launchIntent = PendingIntent.getBroadcast(applicationContext, 0, intent, 0);
-        }
-        enableOrDisableService();
     }
 
     private void setupActionBar() {
@@ -200,10 +151,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             if (key.equals("service_enabled")) {
-                enableOrDisableService();
+                Intent intent = new Intent("com.niledb.tracker.SERVICE_ENABLED_CHANGED");
+                applicationContext.sendBroadcast(intent);
             }
         }
-
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
